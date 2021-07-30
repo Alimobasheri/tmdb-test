@@ -1,8 +1,8 @@
 export interface MovieResult {
   genre_ids: number[];
-  id: number;
+  id?: number;
   title: string;
-  overwiew: string;
+  overwiew?: string;
   popularity: number;
   poster_path: string;
   vote_average: number;
