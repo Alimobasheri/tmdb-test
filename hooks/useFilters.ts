@@ -59,7 +59,7 @@ export default function useFilters({ movies, isLoadingMovies }: FiltersProps) {
   const getSelectProps = () => {
     return {
       values: selectedGenres,
-      genres: allGenres,
+      genres: !!allGenres ? allGenres : [],
       onChange: handleSelectChange,
     };
   };

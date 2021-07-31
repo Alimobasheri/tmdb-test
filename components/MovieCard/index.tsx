@@ -20,6 +20,9 @@ const useCardStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(1),
       margin: theme.spacing(2),
     },
+    media: {
+      height: 150,
+    },
     tag: {
       margin: theme.spacing(0.5),
     },
@@ -42,6 +45,7 @@ const MovieCard: FunctionComponent<MovieCardProps> & MovieCardComposition = ({
   const classes = useCardStyles();
   return (
     <Card className={classes.root}>
+      <CardMedia className={classes.media} />
       <CardContent>{children}</CardContent>
     </Card>
   );

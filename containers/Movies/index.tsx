@@ -7,6 +7,7 @@ import {
   makeStyles,
   createStyles,
   Theme,
+  Typography,
 } from "@material-ui/core";
 import MoviesList from "../../components/MoviesList";
 import useMovies from "../../hooks/useMovies";
@@ -18,12 +19,11 @@ const useMoviesStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       widht: "100%",
-      padding: theme.spacing(1),
+      padding: theme.spacing(2),
     },
     loadingWrapper: {
       widht: "100%",
       minHeight: "100%",
-
       justifyContent: "center",
       alignItems: "center",
     },
@@ -44,15 +44,8 @@ const Movies: FunctionComponent<{}> = () => {
     movies: data,
     isLoadingMovies: isLoading,
   });
-  if (isLoading) {
-    return (
-      <Container component="div" className={classes.loadingWrapper}>
-        <CircularProgress />
-      </Container>
-    );
-  }
   return (
-    <Container component="div" maxWidth="xs">
+    <Container component="div" className={classes.root}>
       <Grid container className={classes.root}>
         <Grid item xs={12}>
           <Grid container justifyContent="flex-start">
@@ -65,7 +58,17 @@ const Movies: FunctionComponent<{}> = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <MoviesList {...getMoviesListProps()} />
+          {isLoading && (
+            <Container component="div" className={classes.loadingWrapper}>
+              <CircularProgress />
+            </Container>
+          )}
+          {!isLoading && !error && <MoviesList {...getMoviesListProps()} />}
+          {error && (
+            <Typography variant="subtitle1" component="h5">
+              Internal Server Error.
+            </Typography>
+          )}
         </Grid>
       </Grid>
     </Container>
