@@ -52,7 +52,7 @@ const Movies: FunctionComponent<{}> = () => {
     );
   }
   return (
-    <Container component="div" className={classes.root}>
+    <Container component="div" maxWidth="xs">
       <Grid container className={classes.root}>
         <Grid item xs={12}>
           <Grid container justifyContent="flex-start">

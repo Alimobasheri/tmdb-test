@@ -7,8 +7,12 @@ interface FiltersProps {
   isLoadingMovies: boolean;
 }
 
-const sortMoviesByPopularity = (movies: MovieResult[]): MovieResult[] =>
-  movies.sort((movieA, movieB) => movieB.popularity - movieA.popularity);
+const sortMoviesByPopularity = (
+  movies: MovieResult[] | undefined
+): MovieResult[] =>
+  Array.isArray(movies)
+    ? movies.sort((movieA, movieB) => movieB.popularity - movieA.popularity)
+    : [];
 
 export default function useFilters({ movies, isLoadingMovies }: FiltersProps) {
   const [selectedGenres, setSelectedGenres] = useState<Genre["id"][]>([]);
